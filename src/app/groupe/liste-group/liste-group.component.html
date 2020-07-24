@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <mat-card class="example-card" *ngFor="let group of groupes">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{group.label}}</mat-card-title>
+        <mat-card-subtitle>{{group.matiere}}</mat-card-subtitle>
+      </mat-card-header>
+      <!-- <img *ngIf="group.matiere === 'mathématique'" mat-card-image src="https://img2.freepng.es/20180410/vow/kisspng-computer-icons-pi-number-font-pi-math-5acc4389217da3.9589491415233360731372.jpg" alt="Photo of a Shiba Inu">
+      <img *ngIf="group.matiere === 'physique'" mat-card-image src="https://st4.depositphotos.com/18657574/21180/v/1600/depositphotos_211809508-stock-illustration-physics-vector-icon-isolated-on.jpg" alt="Photo of a Shiba Inu"> -->
+
+      <mat-card-content>
+        <p>
+          <span class="subtitle">ID :</span> {{group.label}} <br>
+          <span class="subtitle">Matière : </span>{{group.matiere}} <br>
+          <span class="subtitle">Taille :</span> {{group.type}} <br>
+          <span class="subtitle">Niveau : </span> {{group.niveau}} <br>
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="mooveToGroupDetail(group.id)">Etudiants inscrits</button>
+        <!-- <button mat-button>SHARE</button> -->
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+

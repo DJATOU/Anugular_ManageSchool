@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Ajouter un eleve à un groupe</h1>
+<div mat-dialog-content>
+
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+
+  <mat-form-field>
+                <i class="material-icons" matSuffix>
+                  group
+                  </i>
+                        <mat-label>Choisir un groupe</mat-label>
+                        <mat-select formControlName="groupe" required>
+                          <mat-option>--</mat-option>
+                          <mat-option *ngFor="let groupe of groupes" [value]="groupe">
+                            {{groupe.matiere}} {{groupe.label}} {{groupe.type}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.get('groupe').hasError('required')">Champs obligatoire</mat-error>
+                      </mat-form-field>
+<br>
+                      <mat-form-field>
+                        <i class="material-icons" matSuffix>
+                          attach_money
+                          </i>
+                        <mat-label>Choisir un tarif</mat-label>
+                        <mat-select formControlName="tarif" required>
+                          <mat-option>--</mat-option>
+                          <mat-option *ngFor="let tarif of tarifs" [value]="tarif">
+                            {{tarif.prix}} DA
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.get('tarif').hasError('required')">Champs obligatoire</mat-error>
+                      </mat-form-field>
+
+                      <br>
+
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Date de début" formControlName="dateDebut">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+
+                      <br>
+              </form>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button  [disabled]="form.invalid" mat-button cdkFocusInitial (click)="submit(form)">Ok</button>
+</div>

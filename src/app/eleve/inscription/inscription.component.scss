@@ -1,0 +1,36 @@
+.example-container > * {
+    width: 120%;
+  }
+
+  mat-form-field {
+     width: 10%;
+    size: 20%;
+  }
+
+ h3{
+   text-align: center;
+   color : #3f51b5;
+   padding-bottom: 7%;
+ }
+
+ ::ng-deep snack-bar-container.sucess {
+  background: #3f51b5;
+  height: 100px;
+  width: 500px;
+}
+
+::ng-deep snack-bar-container.failed {
+  background: #B22222;
+  height: 100px;
+  width: 500px;
+}
+
+::ng-deep .sucess .mat-simple-snackbar {
+  color: white;
+  font-size: 115%;
+}
+
+::ng-deep .failed .mat-simple-snackbar {
+  color: white;
+  font-size: 115%;
+}

@@ -1,0 +1,68 @@
+
+<h3> Liste des eleves inscrits dans le groupe {{currentGroup.label}}</h3>
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{currentGroup.label}} {{currentGroup.matiere}} </mat-card-title>
+    <mat-card-subtitle>{{currentGroup.type}} {{currentGroup.niveau}}  </mat-card-subtitle>
+  </mat-card-header>
+
+  <hr>
+  <mat-card-content>
+  <div *ngIf="groupsLength > 0">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Recherche">
+    </mat-form-field>
+    
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+      <ng-container matColumnDef="Nom">
+        <th mat-header-cell *matHeaderCellDef> Nom</th>
+        <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Prénom">
+        <th mat-header-cell *matHeaderCellDef> Prénom </th>
+        <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="dateNaissance">
+        <th mat-header-cell *matHeaderCellDef> date de naissance </th>
+        <td mat-cell *matCellDef="let element"> {{element.date_naissance | date}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Téléphone">
+        <th mat-header-cell *matHeaderCellDef> Téléphone </th>
+        <td mat-cell *matCellDef="let element"> {{element.coordonnees.telephone}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.coordonnees.email}} </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="Modifier">
+        <th mat-header-cell *matHeaderCellDef> Modifier </th>
+        <td mat-cell *matCellDef="let element">   <button mat-raised-button color="primary">Modifier</button>
+        </td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="Retirer">
+        <th mat-header-cell *matHeaderCellDef> Retirer </th>
+        <td mat-cell *matCellDef="let element">   <a mat-button matTooltip="Retirer l'eleve du groupe" (click)= "openModalDeleteStudentFromGroup(element)"> <mat-icon>close</mat-icon></a>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <div *ngIf="groupsLength === 0"> 
+    <div class="alert alert-warning" role="alert">
+      Aucun eleve inscrit dans ce groupe
+    </div>
+  </div>
+
+  </mat-card-content>
+</mat-card>

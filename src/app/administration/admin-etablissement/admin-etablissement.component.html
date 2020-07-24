@@ -1,0 +1,47 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Gestion des établissements </mat-card-title>
+    <mat-card-subtitle>Liste des établissements</mat-card-subtitle>
+    <button class="addButton"mat-flat-button color="primary" (click)= "openDialogEtablissement()">Ajouter</button>
+    </mat-card-header>
+
+  <hr>
+  <mat-card-content>
+  <div>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Recherche">
+    </mat-form-field>
+    
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="Nom de l'établissement">
+        <th mat-header-cell *matHeaderCellDef> Nom de l'établissement</th>
+        <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="Adresse">
+        <th mat-header-cell *matHeaderCellDef> Adresse </th>
+        <td mat-cell *matCellDef="let element"> {{element.adresse}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Modifier">
+        <th mat-header-cell *matHeaderCellDef> Modifier </th>
+        <td mat-cell *matCellDef="let element"> <a mat-button matTooltip="Modifier" 
+          (click)="openModalUpdateStudent(element)"> <mat-icon>edit</mat-icon></a> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Supprimer">
+        <th mat-header-cell *matHeaderCellDef> Supprimer </th>
+        <td mat-cell *matCellDef="let element"> 
+          <a mat-button matTooltip="Cloturer" (click)="openModalDeleteStudent(element)"> <mat-icon>close</mat-icon></a> </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  </mat-card-content>
+</mat-card>

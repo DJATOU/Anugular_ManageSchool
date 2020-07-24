@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Ajouter un nouvel établissement</h1>
+<div mat-dialog-content>
+
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+
+<mat-form-field>
+  <i class="material-icons" matSuffix>text_format</i>
+  <input matInput placeholder="Entrer le nom de l'établissement" formControlName="nom" required>
+  <mat-error *ngIf="form.get('nom').hasError('required')">Champs obligatoire</mat-error>
+  <mat-error *ngIf="form.get('nom').hasError('maxlength')">30 caractères maximum</mat-error>
+</mat-form-field>
+            
+<br>
+
+<mat-form-field>
+  <i class="material-icons" matSuffix> location_city</i>
+  <input matInput placeholder="Entrer l'adresse de l'établissement" formControlName="adresse" required>
+  <mat-error *ngIf="form.get('adresse').hasError('required')">Champs obligatoire</mat-error>
+  <mat-error *ngIf="form.get('adresse').hasError('maxlength')">30 caractères maximum</mat-error>
+</mat-form-field>
+
+</form>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button  [disabled]="form.invalid" mat-button cdkFocusInitial (click)="submit(form)">Ok</button>
+</div>

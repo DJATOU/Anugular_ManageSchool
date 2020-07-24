@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Confirmation  <i class="material-icons"> warning</i> </h2>
+<mat-dialog-content> <p> Etes-vous sur de vouloir supprimer ce professeur ? </p>
+                    <p> <span class="userDetails"> Nom : </span> {{data.currentElement.nom}} <br>
+                        <span class="userDetails"> Prénom : </span> {{data.currentElement.prenom}}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false" color="warn">No</button>
+  <button mat-button [mat-dialog-close]="true" color ="primary">Yes</button>  
+</mat-dialog-actions>

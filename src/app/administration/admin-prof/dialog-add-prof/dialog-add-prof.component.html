@@ -1,0 +1,57 @@
+<h1 mat-dialog-title>Ajouter un nouveau professeur</h1>
+<div mat-dialog-content>
+
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+
+<mat-form-field>
+  <i class="material-icons" matSuffix>text_format</i>
+  <input matInput placeholder="Entrer le nom du prof" formControlName="nom" required>
+  <mat-error *ngIf="form.get('nom').hasError('required')">Champs obligatoire</mat-error>
+  <mat-error *ngIf="form.get('nom').hasError('maxlength')">30 caractères maximum</mat-error>
+</mat-form-field>
+            
+<br>
+
+<mat-form-field>
+  <i class="material-icons" matSuffix> text_format</i>
+  <input matInput placeholder="Entrer le prenom du prof" formControlName="prenom" required>
+  <mat-error *ngIf="form.get('prenom').hasError('required')">Champs obligatoire</mat-error>
+  <mat-error *ngIf="form.get('prenom').hasError('maxlength')">30 caractères maximum</mat-error>
+</mat-form-field>
+
+
+  <mat-form-field>
+      <input matInput  [matDatepicker]="picker" placeholder="Date de naissance" formControlName="dateNaissance">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+<mat-form-field>
+  <i class="material-icons" matSuffix> place</i>
+  <input matInput placeholder="Entrer son lieu de naissance" formControlName="lieuNaissance" required>
+  <mat-error *ngIf="form.get('lieuNaissance').hasError('required')">Champs obligatoire</mat-error>
+  <mat-error *ngIf="form.get('lieuNaissance').hasError('maxlength')">30 caractères maximum</mat-error>
+</mat-form-field>
+
+<mat-form-field>
+  <i class="material-icons" matSuffix> phone</i>
+  <input matInput placeholder="Entrer son numéro de téléphone" formControlName="telephone" required>
+  <mat-error *ngIf="form.get('telephone').hasError('required')">Champs obligatoire</mat-error>
+  <mat-error *ngIf="form.get('telephone').hasError('maxlength')">30 caractères maximum</mat-error>
+</mat-form-field>
+
+<mat-form-field>
+  <i class="material-icons" matSuffix> email</i>
+  <input matInput placeholder="Entrer son email" formControlName="email" required>
+  <mat-error *ngIf="form.get('email').hasError('required')">Champs obligatoire</mat-error>
+  <mat-error *ngIf="form.get('email').hasError('maxlength')">30 caractères maximum</mat-error>
+</mat-form-field>
+
+</form>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button  [disabled]="form.invalid" mat-button cdkFocusInitial (click)="submit(form)">Ok</button>
+</div>

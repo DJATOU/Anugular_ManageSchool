@@ -1,0 +1,152 @@
+<mat-grid-list cols="1" rowHeight="56em">
+    <mat-grid-tile
+    [colspan]="1"
+    [rowspan]="1">
+
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+    <h3> Inscription élève</h3>
+    <div class="example-container">
+        <mat-form-field >
+            <i class="material-icons" matSuffix>
+                person
+                </i>
+          <input matInput placeholder="Entrer un nom" formControlName="nom" required>
+          <mat-error *ngIf="form.get('nom').hasError('required')">Champs obligatoire</mat-error>
+          <mat-error *ngIf="form.get('nom').hasError('maxlength')">15 caractères maximum</mat-error>
+
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+          <mat-form-field >
+              <i class="material-icons" matSuffix>
+                  person
+                  </i>
+            <input matInput placeholder="Entrer un prenom" formControlName="prenom" required>
+            <mat-error *ngIf="form.get('prenom').hasError('required')">Champs obligatoire</mat-error>
+            <mat-error *ngIf="form.get('prenom').hasError('maxlength')">15 caractères maximum</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Date de naissance" formControlName="dateNaissance">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+          </div>
+
+          <div class="example-container">
+              <mat-form-field>
+                <input matInput placeholder="Enter un lieu de naissance" formControlName="lieuNaissance" required>
+                <i class="material-icons" matSuffix>
+                    place
+                    </i>
+                <mat-error *ngIf="form.get('lieuNaissance').hasError('required')">Champs obligatoire</mat-error>
+                <mat-error *ngIf="form.get('lieuNaissance').hasError('maxlength')">20 caractères maximum</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="example-container">
+                <mat-form-field >
+                    <i class="material-icons" matSuffix>
+                        phone
+                        </i>
+                  <input matInput placeholder="Entrer un numero de Tél" formControlName="numeroTel" required>
+                  <mat-error *ngIf="form.get('numeroTel').hasError('required')">Champs obligatoire</mat-error>
+                  <mat-error *ngIf="form.get('numeroTel').hasError('maxlength')">12 chiffres maximum</mat-error>                </mat-form-field>
+              </div>
+
+              <div class="example-container">
+                  <mat-form-field >
+                      <i class="material-icons" matSuffix>
+                          email
+                          </i>
+                    <input matInput placeholder="Saisir un email" formControlName="email" required>
+                    <mat-error *ngIf="form.get('email').hasError('required')">Champs obligatoire</mat-error>
+                    <mat-error *ngIf="form.get('email').hasError('maxlength')">30 chiffres maximum</mat-error>
+                    <mat-error *ngIf="form.get('email').hasError('email')">Veuillez saisir une adresse email valide</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="example-container">
+                    <mat-form-field >
+                        <mat-label>Choisir un tuteur</mat-label>
+                        <i class="material-icons" matSuffix>
+                            people_outline
+                            </i>
+                        <mat-select formControlName="tuteur" required>
+                          <mat-option>--</mat-option>
+                          <mat-option *ngFor="let tuteur of tuteurs" [value]="tuteur">
+                            {{tuteur.nom}}  {{tuteur.prenom}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.get('tuteur').hasError('required')">Champs obligatoire</mat-error>
+                      <mat-error *ngIf="form.get('tuteur').hasError('maxlength')">30 chiffres maximum</mat-error>
+                    </mat-form-field>
+                    <button type="button" mat-button color="warn" (click)="openModalTuteur()">Ajouter tuteur</button>
+                  </div>
+
+
+
+                <div class="example-container">
+                    <mat-form-field>
+                        <mat-label>Choisir une année scolaire</mat-label>
+                        <mat-select formControlName="annee_scolaire" required>
+                          <mat-option>--</mat-option>
+                          <mat-option *ngFor="let annee of annees" [value]="annee">
+                            {{annee.annee_scolaire}}  {{annee.filiere}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.get('etablissement').hasError('required')">Champs obligatoire</mat-error>
+                      </mat-form-field>
+                  </div>
+
+                  <div class="example-container">
+                      <mat-form-field>
+                          <mat-label>Choisir un etablissement</mat-label>
+                          <i class="material-icons" matSuffix>
+                              school
+                              </i>
+                          <mat-select formControlName="etablissement" required>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let etabl of etablissements" [value]="etabl">
+                              {{etabl.nom}}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="form.get('etablissement').hasError('required')">Veuillez choisir un etablissement</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="example-container">
+                        <mat-form-field>
+                            <mat-label>Choisir un niveau</mat-label>
+                            <mat-select formControlName="niveau" required>
+                              <mat-option>--</mat-option>
+                              <mat-option value="Terminal">Terminal </mat-option>
+                              <mat-option value="Premiere">Première </mat-option>
+                              <mat-option value="Seconde">Seconde </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form.get('niveau').hasError('required')">Veuillez choisir un etablissement</mat-error>
+                          </mat-form-field>
+                      </div>
+
+                      <div class="example-container">
+                          <mat-form-field >
+                            <input matInput placeholder="Entrer une moyenne" formControlName="moyenne" required>
+                            <i class="material-icons" matSuffix>
+                                score
+                                </i>
+                            <mat-error *ngIf="form.get('moyenne').hasError('required')">Champs obligatoire</mat-error>
+                            <mat-error *ngIf="form.get('moyenne').hasError('max')">La moyenne maximale est de 20</mat-error>
+                          </mat-form-field>
+                        </div>
+                        <div class="example-container">
+                            <button type="submit" mat-button color="primary" [disabled]="form.invalid">Enregistrer</button>
+                        </div>
+</form>
+    </mat-grid-tile>
+
+</mat-grid-list>
+
+<div class="alert alert-danger" *ngIf="errorAddStudent"> <p>Erreur, l'élève n'a pas pu etre ajouté !</p> {{errorMsg}} </div>

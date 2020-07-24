@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Modifier un prix</h1>
+<div mat-dialog-content>
+
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+
+<mat-form-field>
+  <i class="material-icons" matSuffix>attach_money</i>
+  <input matInput placeholder="Entrer le prix" formControlName="prix" required>
+  <mat-error *ngIf="form.get('prix').hasError('required')">Champs obligatoire</mat-error>
+</mat-form-field>
+</form>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button  [disabled]="form.invalid" mat-button cdkFocusInitial (click)="submit(form)">Ok</button>
+</div>

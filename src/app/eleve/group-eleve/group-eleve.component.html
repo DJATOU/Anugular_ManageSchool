@@ -1,0 +1,77 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{student.nom}} {{student.prenom}} </mat-card-title>
+    <mat-card-subtitle>Groupes où {{student.prenom}} est inscrit</mat-card-subtitle>
+    <button class="addButton"mat-flat-button color="primary" (click)="openModalAddGroup(student.id)">Ajouter</button>
+    </mat-card-header>
+
+  <hr>
+  <mat-card-content>
+  <div *ngIf="groupsLength > 0">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Recherche">
+    </mat-form-field>
+    
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="Nom du groupe">
+        <th mat-header-cell *matHeaderCellDef> Nom du groupe</th>
+        <td mat-cell *matCellDef="let element"> {{element.label}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="Matière">
+        <th mat-header-cell *matHeaderCellDef> Matière </th>
+        <td mat-cell *matCellDef="let element"> {{element.matiere}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Niveau">
+        <th mat-header-cell *matHeaderCellDef> Niveau </th>
+        <td mat-cell *matCellDef="let element"> {{element.niveau}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Taille">
+        <th mat-header-cell *matHeaderCellDef> Taille </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Prix">
+        <th mat-header-cell *matHeaderCellDef> Prix </th>
+        <td mat-cell *matCellDef="let element"> {{element.prix}} DA</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Date de début">
+        <th mat-header-cell *matHeaderCellDef> Date de début </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateDebut | date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Date de fin">
+        <th mat-header-cell *matHeaderCellDef> Date de fin </th>
+        <td mat-cell *matCellDef="let element"> {{element.datefin | date}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Cloturer">
+        <th mat-header-cell *matHeaderCellDef> Cloturer </th>
+        <td mat-cell *matCellDef="let element">  <a mat-button matTooltip="Cloturer"> <mat-icon>close</mat-icon></a>
+
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <div *ngIf="groupsLength === 0"> 
+    <div class="alert alert-warning" role="alert">
+      L'eleve n'est inscrit dans aucun groupe
+    </div>
+  </div>
+
+  </mat-card-content>
+</mat-card>

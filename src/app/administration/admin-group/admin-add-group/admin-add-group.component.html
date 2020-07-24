@@ -1,0 +1,67 @@
+<h1 mat-dialog-title>Ajouter un nouveau groupe</h1>
+<div mat-dialog-content>
+
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+
+<mat-form-field>
+  <i class="material-icons" matSuffix>school</i>
+  <!-- <input matInput placeholder="Selectionner la matière" formControlName="matiere" required> -->
+  <mat-label>Selectionner la matière</mat-label>
+  <mat-select formControlName="matiere" required>
+    <mat-option>--</mat-option>
+    <mat-option *ngFor="let matiere of matieres" [value]="matiere">
+      {{matiere}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="form.get('matiere').hasError('required')">Champs obligatoire</mat-error>
+  <mat-error *ngIf="form.get('matiere').hasError('maxlength')">30 caractères maximum</mat-error>
+</mat-form-field>
+<br>
+
+<mat-form-field>
+  <i class="material-icons" matSuffix>confirmation_number</i>
+  <input matInput placeholder="Entrer son identifiant" formControlName="label" required>
+  <mat-error *ngIf="form.get('label').hasError('required')">Champs obligatoire</mat-error>
+  <mat-error *ngIf="form.get('label').hasError('maxlength')">30 caractères maximum</mat-error>
+</mat-form-field>
+            
+<br>
+<mat-form-field >
+  <i class="material-icons" matSuffix>group</i>
+  <!-- <input matInput placeholder="Entrez sa taille" formControlName="type" required> -->
+
+  <mat-label>Entrez sa taille</mat-label>
+  <mat-select formControlName="type" required>
+    <mat-option>--</mat-option>
+    <mat-option *ngFor="let taille of tailles" [value]="taille">
+      {{taille}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="form.get('type').hasError('required')">Champs obligatoire</mat-error>
+  <mat-error *ngIf="form.get('type').hasError('maxlength')">12 chiffres maximum</mat-error>                
+</mat-form-field>
+
+<br>
+
+<mat-form-field >
+  <i class="material-icons" matSuffix>format_list_numbered</i>
+  <!-- <input matInput placeholder="Entrez son niveau" formControlName="niveau" required> -->
+
+  <mat-label>Entrez son niveau</mat-label>
+  <mat-select formControlName="niveau" required>
+    <mat-option>--</mat-option>
+    <mat-option *ngFor="let niveau of niveaux" [value]="niveau">
+      {{niveau}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="form.get('niveau').hasError('required')">Champs obligatoire</mat-error>
+  <mat-error *ngIf="form.get('niveau').hasError('maxlength')">30 chiffres maximum</mat-error>    
+</mat-form-field>
+</form>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button  [disabled]="form.invalid" mat-button cdkFocusInitial (click)="submit(form)">Ok</button>
+</div>

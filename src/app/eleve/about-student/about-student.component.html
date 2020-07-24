@@ -1,0 +1,30 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{student.nom}} {{student.prenom}} </mat-card-title>
+    <mat-card-subtitle>Fiche de l'élève</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-subtitle>Infos sur l'élève</mat-card-subtitle>
+  <hr>
+  <mat-card-content>
+    <div class="container">
+        <p> <span class="infoEtu"> Nom : </span> {{student.nom}}</p>
+        <p> <span class="infoEtu"> Prénom :  </span> {{student.prenom}}</p>
+        <p> <span class="infoEtu"> Date de naissance :  </span> {{student.date_naissance | date }}</p>
+        <p> <span class="infoEtu"> Lieu de naissance :  </span> {{student.lieu_naissance}}</p>
+        <p> <span class="infoEtu"> Numéro de téléphone :  </span> {{student.coordonnees.telephone}}</p>
+        <p> <span class="infoEtu"> Adresse email :  </span> {{student.coordonnees.email}}</p>
+        <p> <span class="infoEtu"> Etablissement :</span>  {{student.nom_etablissement}} </p>
+    </div>
+
+    <mat-card-subtitle>Infos sur le tuteur</mat-card-subtitle>
+    <hr>
+    <div class="container">
+      <p> <span class="infoEtu"> Nom :  </span> {{student.nom_tuteur}} </p>
+      <p> <span class="infoEtu"> Prénom :  </span> {{student.prenom_tuteur}}</p>
+      <p> <span class="infoEtu"> Numéro de téléphone :  </span> {{student.coordonnees_tuteur.telephone}} </p>
+      <p> <span class="infoEtu"> Adresse email : </span>  {{student.coordonnees_tuteur.email}}</p>
+  </div>
+  </mat-card-content>
+</mat-card>

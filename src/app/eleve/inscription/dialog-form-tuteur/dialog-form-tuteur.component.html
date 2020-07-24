@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Ajouter un tuteur</h1>
+<div mat-dialog-content>
+
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+
+    <mat-form-field>
+        <input matInput placeholder="Entrer un nom" formControlName="nom" required>
+        <mat-error *ngIf="form.get('nom').hasError('required')">Champs obligatoire</mat-error>
+        <mat-error *ngIf="form.get('nom').hasError('maxlength')">30 caractères maximum</mat-error>
+      </mat-form-field>
+      
+          <mat-form-field >
+            <input matInput placeholder="Entrer un prenom" formControlName="prenom" required>
+            <mat-error *ngIf="form.get('prenom').hasError('required')">Champs obligatoire</mat-error>
+            <mat-error *ngIf="form.get('prenom').hasError('maxlength')">30 caractères maximum</mat-error>
+          </mat-form-field>
+
+            <mat-form-field >
+              <input matInput placeholder="Entrer un numero de Tél" formControlName="numeroTel" required>
+              <mat-error *ngIf="form.get('numeroTel').hasError('required')">Champs obligatoire</mat-error>
+              <mat-error *ngIf="form.get('numeroTel').hasError('maxlength')">12 chiffres maximum</mat-error>                
+            </mat-form-field>
+        
+
+              <mat-form-field >
+                <input matInput placeholder="Saisir un email" formControlName="email" required>
+                <mat-error *ngIf="form.get('email').hasError('required')">Champs obligatoire</mat-error>
+                <mat-error *ngIf="form.get('email').hasError('maxlength')">30 chiffres maximum</mat-error>    
+                <mat-error *ngIf="form.get('email').hasError('email')">Veuillez saisir une adresse email valide</mat-error>                    
+              </mat-form-field>
+              </form>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button  [disabled]="form.invalid" mat-button cdkFocusInitial (click)="submit(form)">Ok</button>
+</div>

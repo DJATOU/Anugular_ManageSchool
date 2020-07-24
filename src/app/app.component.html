@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+<mat-toolbar-row>
+    <span routerLink="" class="pointer">Ecole31</span>
+    <span class="example-spacer"></span>
+    <span class="example-icon" aria-hidden="false" routerLink="Inscription">Inscription</span>
+    <span class="example-icon" aria-hidden="false" routerLink="ListStudents">Liste étudiants</span>
+    <span mat-button [matMenuTriggerFor]="menu" class="example-icon" aria-hidden="false">Groupes</span>
+    <mat-menu #menu="matMenu">
+      <span mat-menu-item class="example-icon" aria-hidden="false" routerLink="ListeGroup">Liste des groupes</span>
+      <!-- <span mat-menu-item></span> -->
+    </mat-menu>
+    <span class="example-icon" aria-hidden="false" routerLink="administration">Administration</span>
+
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="mat-app-background basic-container">
+    <router-outlet></router-outlet>
+</div>
+
+
+
